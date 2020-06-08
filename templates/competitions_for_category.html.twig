@@ -15,6 +15,7 @@ Competitions for {{ category.name }}:
 <ul>
     {% for competition in competitions %}
         <li><a href="../../competition/{{ competition.id }}/seasons">{{ competition.name }}</a></li>
+        Rounds: {{ competition.rounds }}
     {% endfor %}
 </ul>
 

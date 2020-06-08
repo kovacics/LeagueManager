@@ -15,6 +15,7 @@ Seasons for {{ competition.name }}:
 <ul>
     {% for season in seasons %}
         <li><a href="../../season/{{ season.id }}/results">{{ season.name }}</a></li>
+        Start date: {{ season.startDate|date("y/m/d") }}, End date: {{ season.endDate|date("y/m/d") }}
     {% endfor %}
 </ul>
 
