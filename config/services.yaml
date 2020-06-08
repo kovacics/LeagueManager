@@ -17,6 +17,12 @@ services:
         resource: '../src/*'
         exclude: '../src/{DependencyInjection,Entity,Migrations,Tests,Kernel.php}'
 
+    _instanceof:
+        # Autoconfigure Subscribers that implement AutoLoadedEventSubscriber, which will load the subscribers on boot
+        App\Listener\AutoloadedEventListener:
+            tags: [doctrine.event_subscriber]
+        # Mark all services that implement PublicServ
+
     # controllers are imported separately to make sure services can be injected
     # as action arguments even if you don't extend any base controller class
     App\Controller\:
