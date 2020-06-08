@@ -54,6 +54,7 @@ class MatchChangeListenRedisCommand extends Command
                 $output->write("Recalculated standings.");
                 continue;
             }
+            sleep(1);
         }
     }
 

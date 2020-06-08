@@ -42,7 +42,7 @@ class MatchController extends AbstractController
 
         $match->setStatus($data['status']);
 
-        if ($data['status'] === Match::FINISHED) {
+        if ($match->getStatus() !== Match::FINISHED && $data['status'] === Match::FINISHED) {
             $standingsCalculator->updateRows($match);
         }
 
