@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+          integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <title>Season results</title>
+</head>
+<body>
+<h1 style="text-align: center">Season {{ season.name }} results</h1>
+<div>
+    <h3>Total standing:</h3>
+    <table class="table table-striped table-dark table-sm" style="width: 600px; text-align: center">
+        <thead>
+        <tr>
+            <th scope="col">Competitor</th>
+            <th scope="col">M</th>
+            <th scope="col">W</th>
+            <th scope="col">L</th>
+            {% if sport == 'football' %}
+                <th scope="col">D</th>
+            {% endif %}
+            <th scope="col">SF</th>
+            <th scope="col">SA</th>
+            {% if sport == 'football' %}
+                <th scope="col">Points</th>
+            {% else %}
+                <th scope="col">Percentage</th>
+            {% endif %}
+        </tr>
+        </thead>
+        <tbody>
+        {% for row in totalRows %}
+            <tr>
+                <td>{{ row.competitor.name }}</td>
+                <td>{{ row.matches }}</td>
+                <td>{{ row.wins }}</td>
+                <td>{{ row.losses }}</td>
+                {% if sport == 'football' %}
+                    <td>{{ row.draws }}</td>
+                {% endif %}
+                <td>{{ row.scoresFor }}</td>
+                <td>{{ row.scoresAgainst }}</td>
+                {% if sport == 'football' %}
+                    <td>{{ row.points }}</td>
+                {% else %}
+                    <td>{{ row.percentage }}</td>
+                {% endif %}
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <h3>Home standing:</h3>
+    <table class="table table-striped table-dark table-sm" style="width: 600px; text-align: center">
+        <thead>
+        <tr>
+            <th scope="col">Competitor</th>
+            <th scope="col">M</th>
+            <th scope="col">W</th>
+            <th scope="col">L</th>
+            {% if sport == 'football' %}
+                <th scope="col">D</th>
+            {% endif %}
+            <th scope="col">SF</th>
+            <th scope="col">SA</th>
+            {% if sport == 'football' %}
+                <th scope="col">Points</th>
+            {% else %}
+                <th scope="col">Percentage</th>
+            {% endif %}
+        </tr>
+        </thead>
+        <tbody>
+        {% for row in homeRows %}
+            <tr>
+                <td>{{ row.competitor.name }}</td>
+                <td>{{ row.matches }}</td>
+                <td>{{ row.wins }}</td>
+                <td>{{ row.losses }}</td>
+                {% if sport == 'football' %}
+                    <td>{{ row.draws }}</td>
+                {% endif %}
+                <td>{{ row.scoresFor }}</td>
+                <td>{{ row.scoresAgainst }}</td>
+                {% if sport == 'football' %}
+                    <td>{{ row.points }}</td>
+                {% else %}
+                    <td>{{ row.percentage }}</td>
+                {% endif %}
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <h3>Away standing:</h3>
+    <table class="table table-striped table-dark table-sm" style="width: 600px; text-align: center">
+        <thead>
+        <tr>
+            <th scope="col">Competitor</th>
+            <th scope="col">M</th>
+            <th scope="col">W</th>
+            <th scope="col">L</th>
+            {% if sport == 'football' %}
+                <th scope="col">D</th>
+            {% endif %}
+            <th scope="col">SF</th>
+            <th scope="col">SA</th>
+            {% if sport == 'football' %}
+                <th scope="col">Points</th>
+            {% else %}
+                <th scope="col">Percentage</th>
+            {% endif %}
+        </tr>
+        </thead>
+        <tbody>
+        {% for row in awayRows %}
+            <tr>
+                <td>{{ row.competitor.name }}</td>
+                <td>{{ row.matches }}</td>
+                <td>{{ row.wins }}</td>
+                <td>{{ row.losses }}</td>
+                {% if sport == 'football' %}
+                    <td>{{ row.draws }}</td>
+                {% endif %}
+                <td>{{ row.scoresFor }}</td>
+                <td>{{ row.scoresAgainst }}</td>
+                {% if sport == 'football' %}
+                    <td>{{ row.points }}</td>
+                {% else %}
+                    <td>{{ row.percentage }}</td>
+                {% endif %}
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+<div>
+    Matches:
+    {% for match in matches %}
+        <div style="padding: 5px 10px; background-color: blanchedalmond; border: 1px black solid; width: 300px; margin: 5px">
+            {{ match.homeCompetitor.name }} <span style="color: red">{{ match.homeScore.final }}</span> :
+            <span style="color: red">{{ match.awayScore.final }}</span> {{ match.awayCompetitor.name }}
+        </div>
+    {% endfor %}
+    <span style="color: red"></span>
+</div>
+
+
+
+</body>
+</html>

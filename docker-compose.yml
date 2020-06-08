@@ -1,0 +1,41 @@
+###############################################################################
+#                          Generated on phpdocker.io                          #
+###############################################################################
+version: "3.1"
+services:
+
+    redis:
+      image: redis:alpine
+      container_name: leaguemanager-redis
+
+    postgres:
+      image: postgres:11.0-alpine
+      container_name: leaguemanager-postgres
+      working_dir: /application
+      volumes:
+        - .:/application
+      environment:
+        - POSTGRES_USER=postgres
+        - POSTGRES_PASSWORD=admin
+        - POSTGRES_DB=league_manager_db
+      ports:
+        - "8084:5432"
+
+    webserver:
+      image: nginx:alpine
+      container_name: leaguemanager-webserver
+      working_dir: /
+      volumes:
+          - .:/var/www/app
+          - ./phpdocker/nginx/nginx.conf:/etc/nginx/conf.d/default.conf
+      ports:
+       - "8080:80"
+
+    php-fpm:
+      build: phpdocker/php-fpm
+      container_name: leaguemanager-php-fpm
+      working_dir: /
+      volumes:
+        - .:/var/www/app
+        - ./phpdocker/php-fpm/php-ini-overrides.ini:/etc/php/7.4/fpm/conf.d/99-overrides.ini
+
