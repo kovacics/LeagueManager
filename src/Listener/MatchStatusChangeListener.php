@@ -4,8 +4,6 @@
 namespace App\Listener;
 
 
-use App\Command\MatchChangeListenRedisCommand;
-use App\Entity\Match;
 use Doctrine\ORM\Event\LifecycleEventArgs;
 use Doctrine\ORM\Events;
 use SymfonyBundles\RedisBundle\Redis\ClientInterface;
@@ -31,6 +29,11 @@ class MatchStatusChangeListener implements AutoloadedEventListener
 
     public function postUpdate(LifecycleEventArgs $eventArgs)
     {
+
+        //Doesn't work very well.
+
+        /*
+
         var_dump("test");
 
         $entity = $eventArgs->getEntity();
@@ -42,5 +45,7 @@ class MatchStatusChangeListener implements AutoloadedEventListener
 
             $this->redis->push(MatchChangeListenRedisCommand::MATCH_CHANGE_KEY, $entity->getId());
         }
+
+        */
     }
 }
