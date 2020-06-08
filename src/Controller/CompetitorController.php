@@ -57,6 +57,7 @@ class CompetitorController extends AbstractController
         $country->setAlpha2($countryAlpha2);
         $country->setAlpha3($countryData[Country::ALPHA_3]);
         $country->setName($countryData[Country::NAME]);
+        $competitor->setCountry($country);
 
 
         $entityManager->persist($competitor);
